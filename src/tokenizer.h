@@ -1,6 +1,8 @@
 #ifndef _TOKENIZER_
 #define _TOKENIZER_
 
+#define IN 1 /* inside a word */
+#define OUT 0 /* outside a word */
 
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' ').  
