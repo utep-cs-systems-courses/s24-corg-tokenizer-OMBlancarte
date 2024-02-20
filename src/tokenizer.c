@@ -17,14 +17,14 @@ int main()
   printf("Space_char test with space char: %d\n", outcome);
   */
   // Testing non_space_char method
-  outcome = non_space_char('A');
-  printf("non_space_char test with A: %d\n", outcome);
-  outcome = non_space_char(' ');
-  printf("non_space_char test with tab char: %d\n", outcome);
-
   outcome = count_tokens(input);
   printf("Number of tokens: %d\n", outcome);
-
+  char *beggining = token_start(input);
+  printf("%c\n", *beggining);
+  char *end = token_terminator(input);
+  printf("%c", *end);
+  printf("alksdjf\n");
+  
   return 0;
 }
 
@@ -40,8 +40,19 @@ int non_space_char(char c)
 
 char *token_start(char *str)
 {
-  char *starting_token;
-  
+  if(*str == '\0')
+    return NULL;
+
+  while(space_char(*str++))
+    ;
+  return str - 1;
+}
+
+char*token_terminator(char *token)
+{
+  while(non_space_char(*token))
+    token++;
+  return token;
 }
   
 int count_tokens(char *s)
