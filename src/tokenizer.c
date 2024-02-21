@@ -2,46 +2,6 @@
 #include "stdlib.h"
 #include "tokenizer.h"
 
-int main()
-{
-  char input[20];
-  printf("$ ");
-  scanf("%[^\n]",input);
-  printf("%s\n", input);
-  int outcome;
-  /*
-  //Testing space_char method
-  outcome = space_char('A');
-  printf("Space_char test with A: %d\n", outcome);
-  outcome = space_char(' ');
-  printf("Space_char test with space char: %d\n", outcome);
-  */
-  
-  /*testing token_start and token_terminator and copy_str
-  outcome = count_tokens(input);
-  printf("Number of tokens: %d\n", outcome);
-  char *begin = token_start(input);
-  char*end = token_terminator(input);
-  int length = end - begin;
-  printf("length of token: %d\n", length);
-  char *copye = copy_str(begin, length);
-  printf("copy: %s\n", copye);
-  */
-  
-  char **final = tokenize(input);
-  print_tokens(final);
-  /*
-  char *dumb = beggin;
-  while (*dumb != '\0')
-    dumb++;
-  short length = dumb - beggin;
-  printf("Length of word: %d\n", length);
-  char *copy = copy_str(beggin, length);
-  printf("Copy word: %s\n", copy);
-  */
-  return 0;
-}
-
 int space_char(char c)
 {
   return c == ' ' || c == '\t' ? 1 : 0;
@@ -110,7 +70,6 @@ char **tokenize(char* str)
     str = token_start(str);
     char *terminator = token_terminator(str);
     int length = terminator - str;
-    printf("Length of token: %d\n", length);
     tokens[i] = malloc(sizeof(char) * (length+1));
     char *str_copy = copy_str(str,length);
     for(int j = 0; j < length; j++)
@@ -125,7 +84,7 @@ char **tokenize(char* str)
 
 void print_tokens(char **tokens)
 {
-  for(int i = 0; token[i] != NULL; i++)
+  for(int i = 0; tokens[i] != NULL; i++)
     printf("%s\n", tokens[i]);
 }
 
