@@ -49,6 +49,7 @@ int count_tokens(char *s)
 
 char *copy_str(char *inStr, short len)
 {
+  // Allocate space for copy
   char *str_copy = malloc(sizeof(char) * (len + 1));
   int i;
   
@@ -64,8 +65,10 @@ char **tokenize(char* str)
 {
   int token_count = count_tokens(str);
 
+  // Allocate enough memory for the array of pointers with the number of tokens
   char **tokens = malloc(sizeof(char *) * (token_count));
 
+  // Iterate through the string, find tokens, allocate and copy into tokenizer 
   for(int i = 0; i < token_count; i++){
     str = token_start(str);
     char *terminator = token_terminator(str);
@@ -74,10 +77,13 @@ char **tokenize(char* str)
     char *str_copy = copy_str(str,length);
     for(int j = 0; j < length; j++)
       tokens[i][j] = str_copy[j];
+    // Free the string copy and add \0 at the end
     free(str_copy);
     tokens[i][length] = '\0';
+    // Begin looping through with the token_starting at the beginning
     str = token_start(terminator);
   }
+  // Have the end of the array be null
   tokens[token_count] = NULL;
   return tokens;
 }
