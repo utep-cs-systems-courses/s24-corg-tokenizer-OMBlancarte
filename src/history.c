@@ -59,9 +59,15 @@ void add_history(List *list, char *str)
 /* Get string length */
 int strLength(char *s)
 {
+  /*
   char *sc = s;
   while(*sc++)
     ;
+  return sc - s;
+  */
+  char *sc = s;
+  while(*sc != '\0')
+    sc++;
   return sc - s;
 }
 
